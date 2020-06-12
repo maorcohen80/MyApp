@@ -1,5 +1,5 @@
 # MyApp
-movie test app react native
+movie test app made with expo react-native
 
 usage
 
