@@ -11,9 +11,10 @@ const LoginScreen = (props) => {
     const [visibleDialog, setVisibleDialog] = useState(false);
 
     Facebook.initializeAsync("273905787302320", "MyApp");
-
+    
     const FBlogIn = async () => {
         try {
+            await Facebook.setAutoInitEnabledAsync(true);
             const {
                 type,
                 token,
@@ -23,7 +24,7 @@ const LoginScreen = (props) => {
             console.log('type :>> ', type);
             if (type === "success") {
             // Get the user's name using Facebook's Graph API
-                const response = await fetch(`https://graph.facebook.com/me?access_token=${token}&fields=id,name,email,about,picture`);
+                const response = await fetch(`https://graph.facebook.com/me?access_token=${token}&fields=id,name,email,picture`);
                 let data = await response.json();
                 if (data) {
                     LoginState.setState({
@@ -38,8 +39,9 @@ const LoginScreen = (props) => {
                 alert(`Facebook Login Cancelled`);
             }
             } 
-        catch ({ message }) {
-            alert(`Facebook Login: ${message}`);
+        catch (error) {
+            console.log('error :>> ', error);
+            alert(`Facebook Login: ${error.message}`);
         }
     };
 
@@ -48,6 +50,7 @@ const LoginScreen = (props) => {
             const result = await Google.logInAsync({
                 androidClientId: "647189369105-tnohm9m6p69g4ikg2aann3g5qrtsmehg.apps.googleusercontent.com",
                 iosClientId: "647189369105-ovsoauks2del844m0avl7v27og5fnskg.apps.googleusercontent.com",
+                clientId: "647189369105-tnohm9m6p69g4ikg2aann3g5qrtsmehg.apps.googleusercontent.com", 
                 scopes: ['profile', 'email'],
             });
         
@@ -60,10 +63,11 @@ const LoginScreen = (props) => {
                 setVisibleDialog(true);
                 return;
             } else {
-                alert(`Google Login Cancelled`);
+                alert(`Google Login Cancelled result: ${result}`);
                 return { cancelled: true };
             }
           } catch (e) {
+                alert(`Google Login Cancelled Error: ${e}`);
                 return { error: true };
           }
     } 

@@ -1,12 +1,10 @@
-import React, {useState} from 'react';
-import { Image, StyleSheet, TouchableOpacity, View, FlatList, Dimensions, ActivityIndicator } from 'react-native';
-import {
-	Button, 
-	Text,
-} from "native-base";
+import React, {useState, useEffect} from 'react';
+import { Image, StyleSheet, View, FlatList, Dimensions, ActivityIndicator, Text} from 'react-native';
+import { Button } from "native-base";
+
 import MovieItemList from "../components/MovieItemList";
 
-let {width, height} = Dimensions.get("screen");
+let {height} = Dimensions.get("screen");
 
 import {LoginState} from '../Utils/AppGlobalState';
 
@@ -23,10 +21,12 @@ const HomeScreen = (props) => {
     setLoading(true)
     let nextPage = page;
     let newMovieList = [];
+
     if (page > 10) {
       setReachedMax(true);
       return;
     }
+
     try {
       let movieListReq = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=11abecba88f28d135cab1807896da38d&language=en-US&page=${page}`);
       if (movieListReq.status === 200) {
@@ -73,7 +73,7 @@ const HomeScreen = (props) => {
           <View style={styles.content}>
             <Text style={styles.text}>let's check what's most popular in the movies right now!</Text>
             <Button rounded bordered block
-              style={{marginTop: 20}} 
+              style={{marginTop: 20, marginBottom: 10}} 
               onPress={!reachedMax ? getMovieList : () => {}}
             >
             {!reachedMax ?
@@ -167,6 +167,5 @@ const styles = StyleSheet.create({
     flex: 1, 
     flexDirection: "row",
     justifyContent: "flex-end"
-  },
-  
+  } 
 });

@@ -1,21 +1,15 @@
 import React, {useState} from 'react';
-import { Image, StyleSheet, TouchableOpacity, View, FlatList, Dimensions, ActivityIndicator } from 'react-native';
-import {
-	Button, 
-	Text,
-} from "native-base";
-
-import {Favorites, LoginState} from '../Utils/AppGlobalState';
+import {StyleSheet, View, FlatList, Dimensions, Text } from 'react-native';
+import {Favorites} from '../Utils/AppGlobalState';
 import MovieItemList from "../components/MovieItemList";
 
-let {width, height} = Dimensions.get("screen");
+let {height} = Dimensions.get("screen");
 
 const FavoriteScreen = (props) => {
 
   const {list} = Favorites.state;
-  const {android} = LoginState.state;
 
-  const [movieList, setMovieList] = useState(list);
+  const [movieList] = useState(list);
 
   const renderItem = ({item, index}) => (
     <MovieItemList 
@@ -29,7 +23,7 @@ const FavoriteScreen = (props) => {
     return (
       <View
         style={{
-          paddingBottom: height * 0.5,
+          paddingBottom: height * 0.4,
         }}
       >
       </View>

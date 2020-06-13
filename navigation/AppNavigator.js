@@ -14,13 +14,26 @@ const options = {
 	animationEnabled: true,
 };
 
+const movieOptions = {
+      headerShown: true, 
+      headerBackTitle: "Back", 
+      headerBackTitleStyle: {color: "#000", marginLeft: 5},
+}
+
+const favoritesOptions = {
+      headerShown: true, 
+      headerTitle: null, 
+      headerBackTitle: "Back", 
+      headerBackTitleStyle: {color: "#000", marginLeft: 5},
+}
+
 const AppStack = () => {
 	return (
 		<Stack.Navigator>
             <Stack.Screen name="Login" component={LoginScreen} options={options}/>
             <Stack.Screen name="Home" component={HomeScreen} options={options}/>
-            <Stack.Screen name="Movie Screen" component={MovieScreen} options={{headerShown: true}}/>
-            <Stack.Screen name="Favorites" component={FavoritesScreen} options={{headerShown: true}}/>
+            <Stack.Screen name="Movie Screen" component={MovieScreen} options={movieOptions}/>
+            <Stack.Screen name="Favorites" component={FavoritesScreen} options={favoritesOptions}/>
           </Stack.Navigator>
     )
 }

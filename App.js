@@ -1,7 +1,5 @@
-import { createStackNavigator } from '@react-navigation/stack';
-
 import React from 'react';
-import {StatusBar, SafeAreaView, Platform} from 'react-native';
+import {StatusBar, SafeAreaView, Platform, I18nManager} from 'react-native';
 import {
 	Root, 
 	Container, 
@@ -9,10 +7,7 @@ import {
 
 import AppNavigator from './navigation/AppNavigator';
 
-
-const Stack = createStackNavigator();
-
-const AppStatusBar = (props) => {
+const AppStatusBar = () => {
 	if (Platform.OS === "ios") {
 		return (
 			<SafeAreaView forceInset={{
@@ -22,7 +17,7 @@ const AppStatusBar = (props) => {
 				backgroundColor: "#fff",
 				
 			}} >
-				<StatusBar barStyle="dark-content" />
+				<StatusBar backgroundColor="#fff" barStyle="dark-content" />
 			</SafeAreaView>
 		);
   }
@@ -32,18 +27,21 @@ const AppStatusBar = (props) => {
 };
 
 const App = () => {
+	I18nManager.allowRTL(false);
+	console.disableYellowBox = true;
+
     return (
       <Root>
-				<Container style={{
-					flex: 1,
-					backgroundColor: "#fff"
-				}}>
-					<AppStatusBar />
-					<AppNavigator />
-				</Container>
+			<Container style={{
+				flex: 1,
+				backgroundColor: "#fff"
+			}}>
+				<AppStatusBar />
+				<AppNavigator />
+			</Container>
 		</Root>		
     )
-  }
+}
 
 export default App;
 
