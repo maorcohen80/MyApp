@@ -30,6 +30,9 @@
     "android": {
       "package": "com.maorcohen.myapp",
       "versionCode": 1
-    }
+    },
+    "sdkVersion": "37.0.0",
+    "description": "test Auth app with movie list",
+    "githubUrl": "https://github.com/maorcohen80/MyApp"
   }
 }
