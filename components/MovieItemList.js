@@ -5,7 +5,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 const MovieItemList = ({item, index, cb}) => (
       <TouchableOpacity 
         key={index} 
-        onPress={() => cb()} 
+        onPress={cb} 
         style={styles.movieItem} 
       >
           <Image style={styles.poster} source={{uri: `http://image.tmdb.org/t/p/w154${item.poster_path}`}}/>
