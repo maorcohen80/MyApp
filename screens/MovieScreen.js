@@ -19,7 +19,7 @@ const MovieScreen = ({navigation, route}) => {
 
     useEffect(() => {
         checkIfInList();
-    }, [])
+    });
 
     const addToFav = (movie) => {
         let counter = state.counter;
