@@ -47,9 +47,13 @@ const HomeScreen = (props) => {
       <MovieItemList 
         item={item} 
         index={index}
-        cb={() => props.navigation.navigate("Movie Screen",{movie: item})}
+        cb={navigateToMovie}
       />
   )
+
+  const navigateToMovie = (item) => {
+    props.navigation.navigate("Movie Screen",{movie: item})
+  }
 
   const renderFooter = () => {
     return (
